@@ -19,9 +19,8 @@ module.exports = {
     const splitPath = path.split('/');
     splitPath.pop();
 
-    if (shouldShift) {
+    if (shouldShift)
       splitPath.shift();
-    }
 
     return splitPath.join('/');
   },
@@ -30,10 +29,8 @@ module.exports = {
     const len = matches.length;
 
     let pathString = '';
-
-    for (let index = 0; index < len; index += 1) {
+    for (let index = 0; index < len; index += 1)
       pathString += '../';
-    }
 
     return pathString;
   },

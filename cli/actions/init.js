@@ -19,12 +19,10 @@ module.exports = async () => {
     let alreadyInjected = false;
     let injectionTarget = null;
     splitTypingFile.forEach((line, i) => {
-      if (line === '/// <reference path="_part_3_ue.d.ts">/>') {
+      if (line === '/// <reference path="_part_3_ue.d.ts">/>')
         alreadyInjected = true;
-      }
-      if (line === '/// <reference path="_part_2_ue.d.ts">/>') {
+      if (line === '/// <reference path="_part_2_ue.d.ts">/>')
         injectionTarget = i + 1;
-      }
     });
 
     if (!alreadyInjected) {

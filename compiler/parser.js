@@ -63,21 +63,14 @@ module.exports = {
     ] = configuration.decoratorArguments;
 
     let bindType;
-    if (bindWhat === 'BindAxis') {
-      bindType = 'AxisBinding';
-    } else if (bindWhat === 'BindAction') {
-      bindType = 'ActionBinding';
-    }
+    if (bindWhat === 'BindAxis') bindType = 'AxisBinding';
+    else if (bindWhat === 'BindAction') bindType = 'ActionBinding';
 
     let additionalArguments;
-    if (bindType === 'AxisBinding') {
-      additionalArguments = '-bConsumeInput';
-    } else if (event && bindType === 'ActionBinding') {
-      additionalArguments = event;
-    }
+    if (bindType === 'AxisBinding') additionalArguments = '-bConsumeInput';
+    else if (event && bindType === 'ActionBinding') additionalArguments = event;
 
     const cleanMethodName = methodName.replace(/'/g, '').replace(/"/g, '');
-
     const replaceWhat = result.replace(/ /g, '');
     result = result.replace(
       ')',
@@ -155,9 +148,8 @@ module.exports = {
       cleanType = cleanType.split('=')[0];
     }
 
-    if (cleanType === 'number') {
+    if (cleanType === 'number')
       cleanType = 'int';
-    }
 
     return [name, cleanType];
   },
@@ -175,10 +167,7 @@ module.exports = {
       }
     }
 
-    if (shouldReplace) {
-      return ['ctor() {', shouldReplace];
-    }
-
+    if (shouldReplace) return ['ctor() {', shouldReplace];
     return [line, shouldReplace];
   },
   injectBootstrap(code) {
@@ -188,13 +177,10 @@ module.exports = {
     return code;
   },
   injectProperties(code, propertyBag, targetLine) {
-    if (code[targetLine].replace(/ /g, '') !== '') {
+    if (code[targetLine].replace(/ /g, '') !== '')
       return this.injectProperties(code, propertyBag, targetLine - 1);
-    }
 
-    if (targetLine !== null) {
-      code.splice(targetLine - 1, 0, ...buildPropertyMethod(propertyBag));
-    }
+    targetLine && code.splice(targetLine - 1, 0, ...buildPropertyMethod(propertyBag));
 
     return code;
   },

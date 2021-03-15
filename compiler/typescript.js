@@ -1,10 +1,10 @@
 const ts = require('typescript');
 
-module.exports = (code) => ts.transpileModule(
+module.exports = code => ts.transpileModule(
   code,
   {
     compilerOptions: {
-      removeComments: false, target: 'es6', module: 'commonjs', esModuleInterop: true,
-    },
-  },
+      removeComments: false, target: 'es6', module: 'commonjs', esModuleInterop: true
+    }
+  }
 ).outputText;

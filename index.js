@@ -15,6 +15,4 @@ if (argv.file) {
     const compiled = compiler(code);
     console.log(compiled);
   })();
-} else {
-  cli(argv._);
-}
+} else cli(argv._);

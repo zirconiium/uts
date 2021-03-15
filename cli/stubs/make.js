@@ -8,9 +8,8 @@ module.exports = async (stubName, argArray, filePath, skipSrc = false) => {
   const rawStub = await fs.readFile(`${__dirname}/${stubName}.stub`, 'utf-8');
 
   let finalPath = `src/${filePath}`;
-  if (skipSrc) {
+  if (skipSrc)
     finalPath = filePath;
-  }
 
   let computedStub = rawStub;
   argArray.forEach(([key, value]) => {
@@ -25,9 +24,7 @@ module.exports = async (stubName, argArray, filePath, skipSrc = false) => {
   try {
     const directory = utils.getPathDirs(finalPath);
 
-    if (directory !== '') {
-      await utils.createDirsRecursive(directory);
-    }
+    directory.length > 0 && await utils.createDirsRecursive(directory);
     await fs.writeFile(`${finalPath}`, computedStub, 'utf-8');
   } catch (error) {
     cli.error(`Did you run ${colors.bold.white('uts init')}?`);

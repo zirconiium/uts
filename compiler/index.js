@@ -68,9 +68,8 @@ module.exports = (code) => {
         lines,
         i,
       );
-      if (didReplace) {
+      if (didReplace)
         replaceSuper = true;
-      }
       return replaced;
     }
     if (parser.isDecorator(line)) {
